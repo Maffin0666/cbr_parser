@@ -1,0 +1,48 @@
+### Python ###
+# Виртуальное окружение
+venv/
+.env/
+
+# Кэш и скомпилированные файлы
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+
+### Django ###
+*.pot
+*.pyc
+local_settings.py
+# База данных SQLite
+db.sqlite3
+db.sqlite3-journal
+
+# Логи и медиа
+*.log
+media/
+staticfiles/
+
+### Environment ###
+# Файлы с переменными окружения
+.env
+.env.local
+.env*.local
+
+### IDE ###
+# Настройки редакторов
+.idea/
+.vscode/
+*.swp
+*.sublime-workspace
+
+### Celery ###
+celerybeat-schedule
+celerybeat.pid
+
+### Тестовые данные/бэкапы ###
+*.bak
+*.dump
+*.backup
+test_data/
