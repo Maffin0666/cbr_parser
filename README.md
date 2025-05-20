@@ -53,6 +53,13 @@ Django-приложение для регулярного сбора данны�
 
 
 ### 1. Клонирование репозитория
+Вызов CMD в Windows: Win + R --> cmd --> Enter
+Linux: Ctrl + Alt + T
+Нужен установленный Git. Проверка, есть ли он в системе:
+```bash
+git --version
+```
+При отсутствии Git скачайте с [официального сайта](https://git-scm.com/downloads/win)
 ```bash
 git clone https://github.com/yourusername/cbr_parser.git
 cd cbr_parser
@@ -61,7 +68,7 @@ cd cbr_parser
 ### 2. Настройка виртуального окружения
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/MacOS
+source venv/bin/activate  # Linux
 venv\Scripts\activate     # Windows
 ```
 
@@ -121,3 +128,16 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 ```bash
 docker-compose up -d db redis  # Запуск только СУБД
 ```
+
+### 5. Применение миграций
+
+**Для первого запуска** (после клонирования репозитория):
+```bash
+python manage.py migrate
+```
+
+
+## Настройка
+
+
+
