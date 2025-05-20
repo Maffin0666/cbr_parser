@@ -160,3 +160,9 @@ CELERY_BEAT_SCHEDULE = {
 import threading
 if not hasattr(threading.local(), '_django_db_connections'):
     threading.local()._django_db_connections = {}
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
