@@ -63,15 +63,18 @@ git --version
 ```
 При отсутствии Git скачайте с [официального сайта](https://git-scm.com/downloads/win)
 
-Следуйте инструкциям установщика
+Следуйте инструкциям установщика (При предложенных настройках по умолчанию Git как и нам необходимо добавится в PATH)
 
 После правильной установки:
 ```bash
+cd ~/Projects #Linux - выбираем папку, в которую будем клонировать проект
+cd C:\Projects #Windows - выбираем папку, в которую будем клонировать проект
 git clone https://github.com/yourusername/cbr_parser.git
 cd cbr_parser
 ```
 
 ### 2. Настройка виртуального окружения
+В папке нашего скопированного проекта создаём и активируем виртуальное окружение Python
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux
@@ -79,6 +82,7 @@ venv\Scripts\activate     # Windows
 ```
 
 ### 3. Установка зависимостей
+После активации скачаем нужные для работы приложения библиотеки
 ```bash
 pip install -r requirements.txt
 ```
@@ -132,7 +136,9 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 - База данных PostgreSQL и Redis создаются автоматически при первом запуске
 - Не требуется ручное создание БД или редактирование настроек
 ```bash
-docker-compose up -d db redis  # Запуск только СУБД
+docker-compose up -d --build
+# или для запуска только СУБД:
+docker-compose up -d db redis  
 ```
 
 ### 5. Применение миграций
