@@ -1,5 +1,7 @@
 # CBR Parser
 
+Django project for parsing currency rates and bank data from Central Bank of Russia
+---
 Django-приложение для регулярного сбора данных о курсах валют и информации о банках с сайта Центрального Банка России.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
