@@ -60,6 +60,8 @@ Linux: Ctrl + Alt + T
 git --version
 ```
 При отсутствии Git скачайте с [официального сайта](https://git-scm.com/downloads/win)
+Следуйте инструкциям установщика
+После правильной установки:
 ```bash
 git clone https://github.com/yourusername/cbr_parser.git
 cd cbr_parser
