@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cbr_data',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
+        'USER': 'your_cbr_user', 
+        'PASSWORD': 'your_password',
         'HOST': 'localhost',
         'PORT': '5432',
         'CONN_MAX_AGE': 0,
