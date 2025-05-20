@@ -71,6 +71,43 @@ pip install -r requirements.txt
 ```
 
 ### 4. Настройка базы данных
+Ручная установка (без Docker):
+-----
+(Должен быть предустановлен PostgreSQL)
+#### 1. Создание БД
+Для Linux:
+```bash
+sudo -u postgres psql -c "CREATE DATABASE cbr_data;"
+sudo -u postgres psql -c "CREATE USER cbr_user WITH PASSWORD 'ваш_пароль';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cbr_data TO cbr_user;"
+```
+Для Windows:
+Из директории установки PostgreSQL (обычно C:\Program Files\PostgreSQL\<версия>\bin)
+```bash
+psql -U postgres
+# В интерактивной консоли PSQL выполните:
+CREATE DATABASE cbr_data;
+CREATE USER cbr_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE cbr_data TO cbr_user;
+#для выхода
+\q
+```
+#### 2. Настройка подключения
+Создайте файл cbr_parser/local_settings.py рядом с settings.py (в той же папке)
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cbr_data',
+        'USER': 'your_cbr_user',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+```
+Укажите свои локальные данные: имя БД, пользователя и пароль
 
 
