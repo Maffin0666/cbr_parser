@@ -111,7 +111,7 @@ GRANT ALL PRIVILEGES ON DATABASE cbr_data TO cbr_user;
 \q
 ```
 #### 2. Настройка подключения
-Создайте файл cbr_parser/local_settings.py рядом с settings.py (в той же папке)
+Создайте файл local_settings.py рядом с settings.py (в той же папке (cbr_parser/cbr_parser))
 ```py
 DATABASES = {
     'default': {
@@ -127,6 +127,7 @@ DATABASES = {
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 ```
 Укажите свои локальные данные: имя БД, пользователя и пароль
+
 (самые смелые могут редактировать напрямую settings.py)
 
 
@@ -150,6 +151,42 @@ python manage.py migrate
 
 
 ## Настройка
+При помощи файла local_settings.py можно изменять некоторые параметры под себя. Например:
 
+CELERY_BEAT_SCHEDULE - расписание запуска задач
+
+## Запуск
+Без Docker (предустановленные PostgreSQL и Redis)
+---
+### 1. Запуск Redis
+```bash
+redis-server
+```
+
+### 2. Запуск Celery worker
+Через командную строку из директории проекта с активированным виртуальным окружением Python
+```bash
+celery -A cbr_parser worker --loglevel=info -P eventlet
+# Либо так:
+celery -A cbr_parser worker -l info
+```
+
+### 3. Запуск Celery beat
+Для периодических задач
+```bash
+celery -A cbr_parser beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+# Либо так:
+celery -A cbr_parser beat -l info
+```
+
+### 4. Запуск Django сервера
+```bash
+python manage.py runserver
+# Часто выдавал ошибку, даже если отключала авто-перезагрузку
+python manage.py runserver --noreload
+
+# Поэтому воспользовалась другой вариант сервера (более стабилен для многопоточности)
+waitress-serve --port=8000 cbr_parser.wsgi:application
+```
 
 
