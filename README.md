@@ -110,7 +110,7 @@ GRANT ALL PRIVILEGES ON DATABASE cbr_data TO cbr_user;
 \q
 ```
 #### 2. Настройка подключения
-Создайте файл local_settings.py рядом с settings.py (в той же папке (cbr_parse\cbr_parser))
+Создайте файл local_settings.py рядом с settings.py (в той же папке (cbr_parser\cbr_parser))
 ```py
 DATABASES = {
     'default': {
