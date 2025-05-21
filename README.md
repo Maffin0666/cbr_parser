@@ -175,6 +175,8 @@ python manage.py showmigrations
 
 CELERY_BEAT_SCHEDULE - расписание запуска задач
 
+Либо изменять их прямиком в settings.py
+
 ## Запуск
 Без Docker (предустановленные PostgreSQL и Redis)
 ---
