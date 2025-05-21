@@ -111,29 +111,16 @@ GRANT ALL PRIVILEGES ON DATABASE cbr_data TO cbr_user;
 \q
 ```
 #### 2. Настройка подключения
-Создайте файл local_settings.py рядом с settings.py (в той же папке (cbr_parser\cbr_parser))
-```py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cbr_data',
-        'USER': 'your_cbr_user',
-        'PASSWORD': 'your_password',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+Создайте файл `.env` в корне проекта (cbr_parser) со переменными окружения.
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-```
-Укажите свои локальные данные: имя БД, пользователя и пароль
+Полный список нужных переменных смотрите в `.env.example`
 
-(самые смелые могут редактировать напрямую settings.py)
+Для Docker-развертывания используйте имена сервисов (`db`, `redis`) вместо `localhost`
 
 
 Работа с Docker:
 -----
-При использовании docker-compose.yml:
+При использовании `docker-compose.yml`:
 - База данных PostgreSQL и Redis создаются автоматически при первом запуске
 - Не требуется ручное создание БД или редактирование настроек
 ```bash
@@ -155,7 +142,7 @@ docker-compose up -d db redis web
 docker-compose exec web python manage.py migrate
 ```
 
-**После изменения моделей** (если правили models.py):
+**После изменения моделей** (если правили `models.py`):
 ```bash
 python manage.py makemigrations
 python manage.py migrate
@@ -172,11 +159,8 @@ python manage.py showmigrations
 
 
 ## Настройка
-При помощи файла local_settings.py можно изменять некоторые параметры под себя. Например:
 
-CELERY_BEAT_SCHEDULE - расписание запуска задач
-
-Либо изменять их прямиком в settings.py
+<в разработке>
 
 ## Запуск
 Без Docker (предустановленные PostgreSQL и Redis)
