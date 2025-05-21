@@ -218,6 +218,7 @@ waitress-serve --port=8000 cbr_parser.wsgi:application
 
 #### 2. Создание администратора (суперпользователя)
 Для доступа к админ-панели по адресу http://localhost:8000/admin/
+
 Активируем виртуальное окружение нашего проекта в новой командной строке
 ```bash
 python manage.py createsuperuser
